@@ -13,7 +13,7 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.json());
 app.post("/add-entry",verifyJWTToken, async (req, resp) => {
-  const db = await connection();
+  const db = await connection(); 
   const collection = await db.collection(collectionName);
   const result = await collection.insertOne(req.body);
   
