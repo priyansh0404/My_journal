@@ -1,4 +1,5 @@
 import express from "express";
+import 'dotenv/config';
 import { connection, collectionName } from "./dbconfig.js";
 import cors from "cors";
 import { ObjectId } from "mongodb";
@@ -154,4 +155,4 @@ function verifyJWTToken(req,resp,next){
    
   })
 }
-app.listen(3200);
+app.listen(process.env.PORT);
