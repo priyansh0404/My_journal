@@ -7,7 +7,8 @@ import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser"
 const app = express();
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:['http://localhost:5173',// 2. The crucial addition: Your Netlify frontend URL
+    'https://myjournall.netlify.app'],
     credentials:true
 }));
 app.use(cookieParser());

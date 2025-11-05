@@ -3,6 +3,7 @@ import "../style/addentry.css"
 import { useState } from "react";
 import {useNavigate, useParams } from "react-router-dom";
 export default function UpdateEntry() {
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
   const [taskData, setTaskData] = useState();
   const navigate = useNavigate();
   const {id} = useParams();
@@ -11,7 +12,7 @@ export default function UpdateEntry() {
     fetchEntry(id);
   },[]);
   const fetchEntry = async (id) => {
-    let data = await fetch("http://localhost:3200/entry/"+id,{
+    let data = await fetch(`${API_URL}/entry/`+id,{
       credentials:'include', 
     });
      
@@ -23,7 +24,7 @@ export default function UpdateEntry() {
   };
 
   const UpdateEntry = async()=>{
-    let entry = await fetch("http://localhost:3200/update-entry",{
+    let entry = await fetch(`${API_URL}/update-entry`,{
       method:'PUT',
       body:JSON.stringify(taskData),
       credentials:'include',

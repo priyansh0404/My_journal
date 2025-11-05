@@ -3,6 +3,8 @@ import "../style/login.css";
 import { useNavigate,NavLink } from "react-router-dom";
 import { useEffect } from "react";
 export default function Login() {
+  // Login.jsx (Using the environment variable)
+    const API_URL = import.meta.env.VITE_API_BASE_URL;
     const[userData,setUserData] = useState();
     const navigate = useNavigate();
     useEffect(()=>{
@@ -12,7 +14,7 @@ export default function Login() {
     })
     const handleLogin = async () => {
     console.log(userData);
-    let result = await fetch("http://localhost:3200/login", {
+    let result = await fetch(`${API_URL}/login`, {
       method: "Post",
       body: JSON.stringify(userData),
       headers: {

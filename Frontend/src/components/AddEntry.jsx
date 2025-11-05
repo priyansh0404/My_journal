@@ -3,11 +3,12 @@ import { useState } from "react";
 import "../style/addentry.css";
 import { Navigate, useNavigate } from "react-router-dom";
 export default function AddEntry() {
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
     const [taskData,setTaskData] = useState();
     const navigate = useNavigate();
     const handleAddTask = async() =>{
         console.log(taskData);
-        let result = await fetch("http://localhost:3200/add-entry",{
+        let result = await fetch(`${API_URL}/add-entry`,{
             method:"Post",
             credentials:"include",
             body:JSON.stringify(taskData),

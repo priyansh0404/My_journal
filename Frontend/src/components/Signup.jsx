@@ -4,6 +4,7 @@ import { useNavigate,NavLink } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Signup() {
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
   const [userData, setUserData] = useState([]);
   const navigate = useNavigate();
   useEffect(()=>{
@@ -13,7 +14,7 @@ export default function Signup() {
       })
   const handleSignup = async () => {
     console.log(userData);
-    let result = await fetch("http://localhost:3200/signup", {
+    let result = await fetch(`${API_URL}/signup`, {
       method: "Post",
       body: JSON.stringify(userData),
       headers: {

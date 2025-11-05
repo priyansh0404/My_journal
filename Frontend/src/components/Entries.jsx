@@ -3,13 +3,14 @@ import "../style/entries.css";
 import { Link } from "react-router-dom";
 
 function Entries() {
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
   const [taskData, setTaskData] = useState([]);
   useEffect(() => {
     getListData();
   }, []);
 
   const getListData = async () => {
-    let list = await fetch("http://localhost:3200/entries",{
+    let list = await fetch(`${API_URL}/entries`,{
       credentials:"include"  //isse backend me cookies store hojayega
     });
     const data = await list.json();
@@ -22,7 +23,7 @@ function Entries() {
   };
 
   const deleteTask = async(id) => {
-    let data = await fetch("http://localhost:3200/delete/" +id ,{method:'delete',credentials:"include"});
+    let data = await fetch(`${API_URL}/delete/` +id ,{method:'delete',credentials:"include"});
     data = await data.json();
     if(data.success){
         alert("Data successfully deleted");
